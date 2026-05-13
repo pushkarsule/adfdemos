@@ -44,8 +44,8 @@ jobs:
         run: |
           az deployment group create \
             --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
-            --template-file "./ARMTemplateForFactory.json" \
-            --parameters "./ARMTemplateParametersForFactory.json" \
+            --template-file "./datafactory7eknw4kl4hzsw/ARMTemplateForFactory.json" \
+            --parameters "./datafactory7eknw4kl4hzsw/ARMTemplateParametersForFactory.json" \
             --parameters "@main/.deployment/parameters/test.json"
 
   deploy_prod:
