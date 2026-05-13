@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - adf_publish
+  workflow_dispatch:
 
 permissions:
   contents: read
