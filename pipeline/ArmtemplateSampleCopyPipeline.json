@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "MyCopyActivity",
+				"description": "My demo copy activity",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -19,6 +20,9 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
 						}
 					},
 					"sink": {
