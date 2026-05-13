@@ -1,0 +1,82 @@
+name: ADF CD (Deploy from adf_publish)
+
+on:
+  push:
+    branches:
+      - adf_publish
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy_test:
+    name: Deploy to TEST
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Checkout adf_publish (ARM templates)
+        uses: actions/checkout@v4
+        with:
+          ref: adf_publish
+
+      - name: Checkout main (deployment configs)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          # Option A: using JSON creds (client secret). Store as secret AZURE_CREDENTIALS.
+          # creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+          # Option B: using OIDC (recommended). Put these in GitHub environment variables.
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy ARM template to TEST (parameter overrides)
+        shell: bash
+        run: |
+          az deployment group create \
+            --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
+            --template-file "./ARMTemplateForFactory.json" \
+            --parameters "./ARMTemplateParametersForFactory.json" \
+            --parameters "@main/.deployment/parameters/test.json"
+
+  deploy_prod:
+    name: Deploy to PROD
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: deploy_test
+
+    steps:
+      - name: Checkout adf_publish (ARM templates)
+        uses: actions/checkout@v4
+        with:
+          ref: adf_publish
+
+      - name: Checkout main (deployment configs)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy ARM template to PROD (parameter overrides)
+        shell: bash
+        run: |
+          az deployment group create \
+            --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
+            --template-file "./ARMTemplateForFactory.json" \
+            --parameters "./ARMTemplateParametersForFactory.json" \
+            --parameters "@main/.deployment/parameters/prod.json"
