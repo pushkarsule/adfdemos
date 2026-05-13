@@ -1,0 +1,12 @@
+{
+	"name": "ArmtemplateStorageLinkedService",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://storage7eknw4kl4hzsw.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "datafactory7eknw4kl4hzsw",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "swedencentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "91d1caa9-ee46-4c8a-aa4b-e0dfe143ec87",
+		"tenantId": "fd9c7364-922b-4501-8345-6152a4a41c1b"
+	}
+}
