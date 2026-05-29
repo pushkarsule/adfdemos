@@ -7,9 +7,21 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "datafactory7eknw4kl4hzsw"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"ADLSGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storage7eknw4kl4hzsw.dfs.core.windows.net/"
+		},
 		"ArmtemplateStorageLinkedService_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://storage7eknw4kl4hzsw.blob.core.windows.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0529-204152-uqo0edj4"
 		},
 		"containerUri": {
 			"type": "string",
@@ -38,8 +50,17 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"ADLSGen2_properties_typeProperties_url": {
+						"value": "[parameters('ADLSGen2_properties_typeProperties_url')]"
+					},
 					"ArmtemplateStorageLinkedService_properties_typeProperties_serviceEndpoint": {
 						"value": "[parameters('ArmtemplateStorageLinkedService_properties_typeProperties_serviceEndpoint')]"
+					},
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},

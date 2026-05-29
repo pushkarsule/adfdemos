@@ -5,8 +5,17 @@
 		"factoryName": {
 			"value": "datafactory7eknw4kl4hzsw"
 		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
+		"ADLSGen2_properties_typeProperties_url": {
+			"value": "https://storage7eknw4kl4hzsw.dfs.core.windows.net/"
+		},
 		"ArmtemplateStorageLinkedService_properties_typeProperties_serviceEndpoint": {
 			"value": "https://storage7eknw4kl4hzsw.blob.core.windows.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0529-204152-uqo0edj4"
 		},
 		"containerUri": {
 			"value": ""
